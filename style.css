@@ -1,0 +1,55 @@
+body{
+    background-color: black;
+}
+
+.header{
+    padding: 10px;
+    text-align: center;
+    background: black;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+}
+
+main{
+    background-color: black;
+    color: white;
+}
+
+.square{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(72, 72, 72);
+    font-size: 40px;
+}
+
+section{
+    display: block;
+    text-align: center;
+    background-color: black;
+}
+
+#listOfLetters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#listOfLetters div {
+    display: inline;
+  }
+  
+.second-row {
+    margin: 2px;
+}
+  
+  .keyboard-button {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px;
+    margin: 0 2px;
+  }
+
+  footer{
+      background-color: black;
+  }
