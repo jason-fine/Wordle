@@ -96,12 +96,53 @@ function playTheGame(){
         isItAWordCheck();
         gameLogic();
         guessCounter();
+        
+        // Check for game completion
+        let gameOver = false;
+        
         if (guess == correctWord){
-            alert('YOU WIN! The word was ' + correctWord + '.')
+            if (confirm('YOU WIN! The word was ' + correctWord + '. Play again?')) {
+                restartGame();
+            }
+            gameOver = true;
         }
-        if (guessCount > 7 && guess !== correctWord){
-            alert('YOU LOSE! The correct word was ' + correctWord + '.')
+        
+        if (guessCount > 7 && guess !== correctWord && !gameOver){
+            if (confirm('YOU LOSE! The correct word was ' + correctWord + '. Play again?')) {
+                restartGame();
+            }
         }
+}
+
+// Function to restart the game
+function restartGame() {
+    // Reset game state variables
+    guess = '';
+    solvedWord = ['','','','',''];
+    guessCount = 0;
+    
+    // Choose a new word
+    correctWord = WORDS[Math.floor(Math.random()*WORDS.length)];
+    console.log("New word: " + correctWord); // For debugging
+    
+    // Clear the input field
+    document.getElementById("playGuess").value = '';
+    
+    // Clear the board
+    const rows = document.getElementsByClassName("row");
+    for (let i = 0; i < rows.length; i++) {
+        const squares = rows[i].children;
+        for (let j = 0; j < squares.length; j++) {
+            squares[j].textContent = '';
+            squares[j].style.backgroundColor = 'rgb(72, 72, 72)';
+        }
+    }
+    
+    // Reset keyboard colors
+    const keyboardButtons = document.getElementsByClassName("keyboard-button");
+    for (const button of keyboardButtons) {
+        button.style.backgroundColor = '';
+    }
 }
 
 
