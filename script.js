@@ -6,7 +6,25 @@ let i = 0;
 import { WORDS } from "./words.js"
 let correctWord = WORDS[Math.floor(Math.random()*WORDS.length)];
 
-document.getElementById("submit").onclick = function() {playTheGame ()};
+// Add click event for submit button
+document.getElementById("submit").onclick = function() {playTheGame()};
+
+// Initialize event listeners when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add Enter key press event for the input field
+    document.getElementById("playGuess").addEventListener('keypress', function(event) {
+        // Check if the Enter key was pressed
+        if (event.key === 'Enter') {
+            // Prevent default action to avoid form submission
+            event.preventDefault();
+            // Call playTheGame function
+            playTheGame();
+        }
+    });
+    
+    // Focus on the input field by default
+    document.getElementById("playGuess").focus();
+});
 
 let guessBar = document.createElement("INPUT");
 guessBar.setAttribute("type", "text");
@@ -112,6 +130,10 @@ function playTheGame(){
                 restartGame();
             }
         }
+        
+        // Clear the input field and refocus it for the next guess
+        document.getElementById("playGuess").value = '';
+        document.getElementById("playGuess").focus();
 }
 
 // Function to restart the game
